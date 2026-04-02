@@ -1,0 +1,543 @@
+/**
+ * PHASE 5: Video Upload Modal Styles
+ * 
+ * Responsive design for:
+ * - Modal overlay and container
+ * - File selection (drag & drop)
+ * - Progress bar
+ * - Phase status display
+ * - Error and success messages
+ */
+
+/* ==================== MODAL OVERLAY & CONTAINER ==================== */
+.video-upload-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.video-upload-modal {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease-in-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ==================== MODAL HEADER ==================== */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.close-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* ==================== MODAL BODY ==================== */
+.modal-body {
+  padding: 30px 20px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==================== PHASE PROGRESS ==================== */
+.phase-progress {
+  margin-bottom: 30px;
+}
+
+.progress-steps {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 100px;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+.step.current {
+  opacity: 1;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  border: 2px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.step.active .step-number {
+  background: #e3f2fd;
+  border-color: #2196f3;
+  color: #2196f3;
+}
+
+.step.current .step-number {
+  background: #2196f3;
+  border-color: #2196f3;
+  color: white;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.step-label {
+  font-size: 12px;
+  text-align: center;
+  color: #666;
+  font-weight: 500;
+}
+
+.step.active .step-label {
+  color: #333;
+}
+
+/* ==================== FILE DROP ZONE ==================== */
+.file-drop-zone {
+  border: 2px dashed #2196f3;
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.file-drop-zone:hover {
+  border-color: #1976d2;
+  background: #e3f2fd;
+}
+
+.file-drop-zone.dragging {
+  border-color: #1976d2;
+  background: #e3f2fd;
+  transform: scale(1.02);
+}
+
+.drop-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.file-drop-zone h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #1a1a1a;
+}
+
+.file-drop-zone p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+/* ==================== UPLOAD PROGRESS ==================== */
+.upload-progress-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.description {
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+}
+
+.file-info {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.file-info p {
+  margin: 5px 0;
+  color: #333;
+}
+
+/* ==================== PROGRESS BAR ==================== */
+.progress-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 24px;
+  background: #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2196f3 0%, #1976d2 100%);
+  transition: width 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.progress-text {
+  min-width: 40px;
+  text-align: right;
+  font-weight: 600;
+  color: #2196f3;
+}
+
+/* ==================== PHASE STATUS ==================== */
+.phase-status {
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  background: #f9f9f9;
+}
+
+.status {
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.status.uploading {
+  color: #2196f3;
+  animation: pulse 1s infinite;
+}
+
+.status.confirming {
+  color: #ff9800;
+}
+
+.status.extracting {
+  color: #9c27b0;
+  animation: pulse 1s infinite;
+}
+
+.status.ready {
+  color: #4caf50;
+}
+
+/* ==================== VIDEO METADATA ==================== */
+.video-metadata {
+  background: #f0f4f8;
+  padding: 15px;
+  border-radius: 6px;
+  border-left: 4px solid #2196f3;
+}
+
+.video-metadata h4 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: #1a1a1a;
+}
+
+.video-metadata ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.video-metadata li {
+  padding: 6px 0;
+  color: #333;
+  font-size: 14px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.ready {
+  background: #c8e6c9;
+  color: #2e7d32;
+}
+
+/* ==================== MESSAGES ==================== */
+.error-message {
+  background: #ffebee;
+  border: 1px solid #ef5350;
+  border-radius: 6px;
+  padding: 12px;
+  color: #c62828;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.success-message {
+  background: #e8f5e9;
+  border: 1px solid #66bb6a;
+  border-radius: 6px;
+  padding: 12px;
+  color: #2e7d32;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ==================== MODAL FOOTER ==================== */
+.modal-footer {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* ==================== BUTTONS ==================== */
+.btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-cancel {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.btn-cancel:hover {
+  background: #e0e0e0;
+}
+
+.btn-primary {
+  background: #2196f3;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #1976d2;
+}
+
+.btn-primary:disabled {
+  background: #bdbdbd;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 600px) {
+  .video-upload-modal {
+    width: 95%;
+    max-height: 100vh;
+  }
+
+  .modal-header {
+    padding: 15px;
+  }
+
+  .modal-header h2 {
+    font-size: 20px;
+  }
+
+  .modal-body {
+    padding: 20px 15px;
+    min-height: 300px;
+  }
+
+  .file-drop-zone {
+    padding: 30px 15px;
+  }
+
+  .drop-icon {
+    font-size: 40px;
+  }
+
+  .file-drop-zone h3 {
+    font-size: 16px;
+  }
+
+  .progress-steps {
+    gap: 8px;
+  }
+
+  .step {
+    min-width: 80px;
+  }
+
+  .step-number {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+
+  .step-label {
+    font-size: 11px;
+  }
+
+  .modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .video-upload-modal {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .close-btn {
+    font-size: 28px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .phase-progress {
+    margin-bottom: 20px;
+  }
+
+  .progress-steps {
+    gap: 6px;
+  }
+
+  .step {
+    min-width: 70px;
+  }
+
+  .step-number {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .step-label {
+    font-size: 10px;
+  }
+
+  .progress-bar-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .progress-text {
+    min-width: auto;
+    text-align: left;
+  }
+}

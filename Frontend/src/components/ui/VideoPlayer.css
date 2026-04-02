@@ -1,0 +1,559 @@
+/* ========================================
+   VIDEO PLAYER STYLES
+   Complete video player styling with controls
+   ======================================== */
+
+.video-player-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* ========================================
+   VIDEO PLAYER
+   ======================================== */
+
+.video-player {
+  position: relative;
+  width: 100%;
+  background: #000;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-element {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ========================================
+   LOADING INDICATOR
+   ======================================== */
+
+.loading-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  z-index: 10;
+}
+
+.loading-indicator p {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-top: 4px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================================
+   PLAY BUTTON OVERLAY
+   ======================================== */
+
+.play-button-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  z-index: 5;
+  transition: background 0.3s ease;
+}
+
+.play-button-overlay:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.play-button {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: #fff;
+  font-size: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+}
+
+.play-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 24px rgba(102, 126, 234, 0.6);
+}
+
+.play-button:active {
+  transform: scale(0.95);
+}
+
+/* ========================================
+   VIDEO CONTROLS
+   ======================================== */
+
+.video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 40px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 15;
+}
+
+.video-player:hover .video-controls,
+.video-player:focus-within .video-controls {
+  opacity: 1;
+}
+
+/* ========================================
+   PROGRESS BAR
+   ======================================== */
+
+.progress-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  transition: height 0.2s ease;
+}
+
+.progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #667eea;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.6);
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.progress-bar::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #667eea;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.6);
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.progress-bar:hover {
+  height: 6px;
+}
+
+.progress-bar:hover::-webkit-slider-thumb {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.progress-bar:hover::-moz-range-thumb {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* ========================================
+   CONTROLS BAR
+   ======================================== */
+
+.controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.controls-left,
+.controls-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ========================================
+   CONTROL BUTTONS
+   ======================================== */
+
+.control-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+  line-height: 1;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+}
+
+.play-pause-btn {
+  font-size: 20px;
+}
+
+.play-pause-btn.playing::after {
+  content: '';
+}
+
+/* ========================================
+   VOLUME CONTROL
+   ======================================== */
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.volume-btn {
+  padding: 0;
+  min-width: auto;
+  min-height: auto;
+  font-size: 18px;
+  width: 32px;
+  height: 32px;
+}
+
+.volume-slider {
+  width: 80px;
+  height: 3px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #667eea;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.6);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #667eea;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.6);
+}
+
+/* ========================================
+   TIME DISPLAY
+   ======================================== */
+
+.time-display {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  min-width: 60px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ========================================
+   FULLSCREEN BUTTON
+   ======================================== */
+
+.fullscreen-btn {
+  font-size: 18px;
+  padding: 8px;
+}
+
+/* ========================================
+   VIDEO INFO
+   ======================================== */
+
+.video-info {
+  background: #fff;
+  padding: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.video-info h3 {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.info-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.info-item strong {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.status-badge {
+  display: inline-block;
+  background: #d1fae5;
+  color: #065f46;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .video-player {
+    aspect-ratio: 16 / 9;
+  }
+
+  .play-button {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+  }
+
+  .control-btn {
+    font-size: 16px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .time-display {
+    font-size: 12px;
+    min-width: 50px;
+  }
+
+  .volume-slider {
+    width: 60px;
+  }
+
+  .info-details {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .video-player-container {
+    border-radius: 0;
+  }
+
+  .video-player {
+    aspect-ratio: 16 / 9;
+  }
+
+  .play-button {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  .video-controls {
+    padding: 30px 12px 12px;
+  }
+
+  .progress-bar {
+    height: 3px;
+  }
+
+  .control-btn {
+    font-size: 14px;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 6px;
+  }
+
+  .play-pause-btn {
+    font-size: 18px;
+  }
+
+  .volume-control {
+    flex-direction: column;
+    gap: 4px;
+    padding: 4px;
+  }
+
+  .volume-slider {
+    width: 40px;
+    height: 2px;
+  }
+
+  .time-display {
+    font-size: 11px;
+    min-width: 45px;
+  }
+
+  .controls-left {
+    gap: 8px;
+  }
+
+  .video-info {
+    padding: 16px;
+  }
+
+  .video-info h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .info-item {
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  .status-badge {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+}
+
+/* ========================================
+   FULLSCREEN MODE
+   ======================================== */
+
+.video-player-container:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  border-radius: 0;
+}
+
+.video-player-container:fullscreen .video-player {
+  aspect-ratio: auto;
+  width: 100%;
+  height: 100%;
+}
+
+/* ========================================
+   DARK MODE SUPPORT
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .video-info {
+    background: #1f2937;
+    border-top-color: #374151;
+  }
+
+  .video-info h3 {
+    color: #f3f4f6;
+  }
+
+  .info-item {
+    color: #d1d5db;
+  }
+
+  .info-item strong {
+    color: #f3f4f6;
+  }
+}
+
+/* ========================================
+   ANIMATION SUPPORT
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .video-controls,
+  .control-btn,
+  .play-button,
+  .progress-bar::-webkit-slider-thumb,
+  .volume-slider::-webkit-slider-thumb {
+    transition: none;
+  }
+
+  .spinner {
+    animation: none;
+  }
+
+  .control-btn:hover,
+  .play-button:hover {
+    transform: none;
+  }
+}
