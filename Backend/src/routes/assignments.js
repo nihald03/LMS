@@ -18,7 +18,7 @@ const {
   getClassAnalytics,
   getPendingSubmissionsForTeacher,
   getSubmissionById
-} = require('../controllers/assignmentControllerV2');
+} = require('../controllers/assignmentController');
 const upload = require('../middleware/upload');
 
 const router = express.Router();
