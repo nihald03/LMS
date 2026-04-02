@@ -1,0 +1,89 @@
+# Dependencies
+node_modules/
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+# Environment variables (NEVER commit)
+.env
+.env.local
+.env.*.local
+
+# Build & dist files
+dist/
+build/
+out/
+*.log
+*.csv
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*~
+.DS_Store
+.project
+.classpath
+.c9/
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Development/Debug Files (tools & notes)
+debug_*.js
+find_*.js
+check_*.js
+fix_*.js
+*V2.js
+*.backup
+*.tmp
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Uploads & temp files
+Backend/public/uploads/
+Backend/public/uploads/temp/
+Frontend/public/uploads/
+
+# Postman (optional - keep if you want test collections for contributors)
+# Backend/postman/
+
+# VS Code workspace settings (optional to exclude)
+.vscode/settings.json
+.vscode/launch.json
+
+# Development notes & internal docs (remove from repo)
+ACTION_ITEMS*.md
+PHASE*.md
+ALL_FIXES*.md
+API_FIX*.md
+ASSIGNMENT_*.md
+AUTHORIZATION_*.md
+BEFORE_AFTER*.md
+COMPLETE_*.md
+*_FIXES*.md
+*_SUMMARY.md
+*_PLAN*.md
+CONNECTION_FLOW*.md
+DATABASE_CONNECTION*.md
+QUICK_*.md
+ACTIVITY_*.md
+ANALYSIS_*.md
+BACKWARD_*.md
+CHANGES_*.md
+CODE_CHANGES*.md
