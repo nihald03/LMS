@@ -9,4 +9,14 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendors': ['react', 'react-dom', 'react-router-dom']
+        }
+      }
+    },
+    chunkSizeWarningLimit: 1000,
+  }
 })
