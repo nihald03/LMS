@@ -16,22 +16,13 @@ const {
   addComment,
   getAssignmentAnalytics,
   getClassAnalytics,
-  getPendingSubmissionsForTeacher,
-  getSubmissionById
+  getPendingSubmissionsForTeacher
 } = require('../controllers/assignmentController');
 const upload = require('../middleware/upload');
 
 const router = express.Router();
 
 // ⚠️ IMPORTANT: Specific routes MUST come BEFORE generic :id routes
-
-// ✅ Get single submission details
-router.get(
-  '/submissions/:submissionId',
-  protect,
-  authorize('teacher', 'admin'),
-  getSubmissionById
-);
 
 // Create assignment (Teacher/Admin only)
 router.post('/', protect, authorize('teacher', 'admin'), createAssignment);
