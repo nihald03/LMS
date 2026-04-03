@@ -38,22 +38,7 @@ const MyCourses = () => {
             console.error('Error fetching enrolled courses:', error);
             toast.error('Failed to load your courses');
             // Mock data for demo
-            setCourses([
-                {
-                    _id: '1',
-                    courseName: 'Complete Web Development Bootcamp 2024',
-                    assignedTeacher: { name: 'Dr. Angela Yu' },
-                    progress: 45,
-                    duration: 65,
-                },
-                {
-                    _id: '2',
-                    courseName: 'Graphic Design Masterclass',
-                    assignedTeacher: { name: 'Lindsay Marsh' },
-                    progress: 12,
-                    duration: 28,
-                }
-            ]);
+            setCourses([]);
         } finally {
             setLoading(false);
         }

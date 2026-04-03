@@ -349,17 +349,21 @@ const TeacherDashboard = () => {
                             </CardTitle>
                         </CardHeader>
                         <CardContent className="pt-6 space-y-4">
-                            {recentActivity.map((activity, idx) => (
-                                <div key={idx} className="flex gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100 group hover:bg-white hover:shadow-lg transition-all duration-300">
-                                    <div className="w-2 h-2 rounded-full bg-primary mt-2 shrink-0 group-hover:scale-150 transition-transform"></div>
-                                    <div className="space-y-1">
-                                        <p className="text-sm font-bold text-slate-900">{activity.details}</p>
-                                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">
-                                            {new Date(activity.timestamp).toLocaleDateString()} • {activity.type.replace('_', ' ')}
-                                        </p>
-                                    </div>
+                            {recentActivity && recentActivity.length > 0 ? (
+                            recentActivity.map((activity, idx) => (
+                                <div key={idx} className="flex gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                                <div className="w-2 h-2 rounded-full bg-primary mt-2"></div>
+                                <div>
+                                    <p className="text-sm font-bold text-slate-900">{activity.details}</p>
+                                    <p className="text-xs text-slate-400">
+                                    {new Date(activity.timestamp).toLocaleDateString()}
+                                    </p>
                                 </div>
-                            ))}
+                                </div>
+                            ))
+                            ) : (
+                            <p className="text-slate-400 text-sm">No recent activity</p>
+                            )}
                         </CardContent>
                     </Card>
 
@@ -376,7 +380,9 @@ const TeacherDashboard = () => {
                                 </span>
                                 <TrendingUp className="w-8 h-8 text-emerald-400 mb-2" />
                             </div>
-                            <p className="text-slate-400 text-xs font-bold mt-4">Above average for this semester</p>
+                            <p className="text-slate-400 text-xs mt-4">
+                                Based on current course activity
+                            </p>
                         </CardContent>
                     </Card>
                 </div>
